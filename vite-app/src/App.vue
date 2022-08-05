@@ -1,11 +1,13 @@
 <template>
   <!-- <vBase></vBase> -->
-  <vDomDiff></vDomDiff>
+  <!-- <vDomDiff></vDomDiff> -->
+  <vRef></vRef>
 </template>
 
 <script setup lang="ts">
 // import vBase from './components/Vue基础.vue'
-import vDomDiff from './components/虚拟DOM和VueKeyDiff算法.vue'
+// import vDomDiff from './components/虚拟DOM和VueKeyDiff算法.vue'
+import vRef from './components/Ref全家桶.vue'
 </script>
 
 <style scoped>
