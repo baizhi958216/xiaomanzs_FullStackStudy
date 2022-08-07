@@ -5,7 +5,8 @@
   <!-- <vReactive></vReactive> -->
   <!-- <vtoRefs></vtoRefs> -->
   <!-- <vComputed></vComputed> -->
-  <vWatch></vWatch>
+  <!-- <vWatch></vWatch> -->
+  <vWatchEffect></vWatchEffect>
 </template>
 
 <script setup lang="ts">
@@ -15,7 +16,8 @@
 // import vReactive from './components/Reactive全家桶.vue'
 // import vtoRefs from './components/toRef_toRefs_toRaw.vue'
 // import vComputed from './components/Vue计算属性.vue'
-import vWatch from './components/VueWatch.vue'
+// import vWatch from './components/VueWatch.vue'
+import vWatchEffect from './components/VueWatchEffect.vue'
 </script>
 
 <style scoped>
