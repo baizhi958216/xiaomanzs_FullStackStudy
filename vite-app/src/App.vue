@@ -6,7 +6,8 @@
   <!-- <vtoRefs></vtoRefs> -->
   <!-- <vComputed></vComputed> -->
   <!-- <vWatch></vWatch> -->
-  <vWatchEffect></vWatchEffect>
+  <!-- <vWatchEffect></vWatchEffect> -->
+  <vLifeCircle></vLifeCircle>
 </template>
 
 <script setup lang="ts">
@@ -17,7 +18,8 @@
 // import vtoRefs from './components/toRef_toRefs_toRaw.vue'
 // import vComputed from './components/Vue计算属性.vue'
 // import vWatch from './components/VueWatch.vue'
-import vWatchEffect from './components/VueWatchEffect.vue'
+// import vWatchEffect from './components/VueWatchEffect.vue'
+import vLifeCircle from './components/Vue生命周期和钩子.vue'
 </script>
 
 <style scoped>
