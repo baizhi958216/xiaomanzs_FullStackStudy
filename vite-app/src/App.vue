@@ -7,7 +7,8 @@
   <!-- <vComputed></vComputed> -->
   <!-- <vWatch></vWatch> -->
   <!-- <vWatchEffect></vWatchEffect> -->
-  <vLifeCircle></vLifeCircle>
+  <!-- <vLifeCircle></vLifeCircle> -->
+  <layout></layout>
 </template>
 
 <script setup lang="ts">
@@ -19,8 +20,9 @@
 // import vComputed from './components/Vue计算属性.vue'
 // import vWatch from './components/VueWatch.vue'
 // import vWatchEffect from './components/VueWatchEffect.vue'
-import vLifeCircle from './components/Vue生命周期和钩子.vue'
+// import vLifeCircle from './components/Vue生命周期和钩子.vue'
+import layout from './layout/index.vue'
 </script>
 
-<style scoped>
+<style lang="less">
 </style>
