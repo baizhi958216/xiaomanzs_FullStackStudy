@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
 import './assets/css/reset.less'
 import App from './App.vue'
-
-createApp(App).mount('#app')
+import Card from './components/Card/index.vue'
+createApp(App).component('Card',Card).mount('#app')

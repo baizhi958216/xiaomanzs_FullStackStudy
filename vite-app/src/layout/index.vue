@@ -25,10 +25,10 @@ const getList = (list: number,bool1:boolean) => {
   console.log(list, '====>子组件的List',bool1,'=====>子组件的bool1')
 }
 // 接受子组件参数
-// 接收子组件暴露的参数
 const menus=ref(null)
 const getBool = (bo:boolean) => {
   console.log(bo,'=====>子组件的bool2')
+  // 接收子组件暴露的参数
   console.log(menus.value);
 }
 </script>
