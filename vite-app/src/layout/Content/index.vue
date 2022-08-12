@@ -7,9 +7,8 @@
       <div @click="switchCom(item)" v-for="(item, index) in data" :key="item.name">
         {{ item.name }}
       </div>
-    </div>
-    <!-- 动态组件component -->
-    <!-- 
+      <!-- 动态组件component -->
+      <!-- 
       Vue3使用setup语法使用bind绑定,
       若不使用setup语法(Vue2)可以通过字符串形式绑定
       <component is="A"></component>
@@ -19,8 +18,32 @@
         }
       }
       -->
-    <component :is="current.comName"></component>
+      <component :is="current.comName"></component>
+    </div>
+
+    <!-- nameless slot匿名插槽 -->
+    <Dialog>
+      <template v-slot:header>
+        <div>
+          具名插槽插入
+        </div>
+      </template>
+      <!-- 
+        解构函数把data里的prop解构出来
+        { "prop": { "name": "slot1", "age": 11 } }
+         -->
+      <template v-slot="{prop}">
+        <div>{{typeof prop}}</div>
+      </template>
+      <!-- 简写# -->
+      <template #footer>
+        <div>
+          具名插槽插入
+        </div>
+      </template>
+    </Dialog>
   </div>
+
 </template>
 
 <script setup lang="ts">
