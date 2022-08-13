@@ -9,7 +9,8 @@
   <!-- <vWatchEffect></vWatchEffect> -->
   <!-- <vLifeCircle></vLifeCircle> -->
   <!-- <layout></layout> -->
-  <vkeepalive></vkeepalive>
+  <!-- <vkeepalive></vkeepalive> -->
+  <vtransition></vtransition>
 </template>
 
 <script setup lang="ts">
@@ -23,7 +24,8 @@
 // import vWatchEffect from './components/VueWatchEffect.vue'
 // import vLifeCircle from './components/Vue生命周期和钩子.vue'
 // import layout from './layout/index.vue'
-import vkeepalive from './components/keepAlive缓存组件.vue'
+// import vkeepalive from './components/keepAlive缓存组件.vue'
+import vtransition from './components/transition动画组件.vue'
 </script>
 
 <style lang="less">
