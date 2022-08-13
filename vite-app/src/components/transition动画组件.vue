@@ -4,8 +4,10 @@
     <!-- 
       transition组件 
       添加动画状态实现动画效果
+      enter/leave生命周期
       -->
-    <transition name="fade">
+    <transition name="fade" @before-enter="EnterFrom" @enter="EnterActive" @after-enter="EnterTo"
+      @enter-cancelled="EnterCancel">
       <div v-if="!flag" class="redbox"></div>
     </transition>
   </div>
@@ -31,7 +33,8 @@
       duration动画持续时长
       :duration="1000" 指定enter/leave均为1s
       -->
-    <transition :duration="{ enter: 1000, leave: 1000 }" leave-active-class="animate__animated animate__lightSpeedOutRight"
+    <transition :duration="{ enter: 1000, leave: 1000 }"
+      leave-active-class="animate__animated animate__lightSpeedOutRight"
       enter-active-class="animate__animated animate__lightSpeedInLeft" name="fade2">
       <div v-if="!flag2" class="redbox2">你好傻孩子</div>
     </transition>
@@ -45,6 +48,25 @@ import 'animate.css'
 let flag = ref(true)
 let flag1 = ref(true)
 let flag2 = ref(true)
+
+const EnterFrom = () => {
+  console.log('EnterFrom动画开始');
+}
+
+const EnterActive = (el: Element, done: Function) => {
+  console.log('EnterActive进入动画', el);
+  setTimeout(() => {
+    done()
+  }, 3000);
+}
+
+const EnterTo = () => {
+  console.log('EnterTo动画结束');
+}
+
+const EnterCancel = () => {
+  console.log('EnterCancel动画取消');
+}
 </script>
 
 <style scoped>
