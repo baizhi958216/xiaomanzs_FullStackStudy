@@ -33,8 +33,8 @@
         解构函数把data里的prop解构出来
         { "prop": { "name": "slot1", "age": 11 } }
          -->
-      <template v-slot="{prop}">
-        <div>{{typeof prop}}</div>
+      <template v-slot="{prop,index}">
+        <div>{{prop.name}}-{{prop.age}}-{{index}}</div>
       </template>
       
       <!-- 简写# -->
@@ -43,13 +43,18 @@
           具名插槽插入
         </div>
       </template>
+
+      <!-- 动态插槽 dynamic slot -->
+      <template #[name]>
+          <div>动态插槽</div>
+      </template>
     </Dialog>
   </div>
 
 </template>
 
 <script setup lang="ts">
-import { markRaw, reactive } from 'vue';
+import { markRaw, reactive,ref } from 'vue';
 import A from './A.vue'
 import B from './B.vue'
 import C from './C.vue'
@@ -85,6 +90,9 @@ let current = reactive<Com>({
 const switchCom = (item: Tabs) => {
   current.comName = item.comName
 }
+
+// 动态插槽
+let name = ref('footer')
 </script>
 
 <style scoped lang="less">

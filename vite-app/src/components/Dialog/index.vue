@@ -6,7 +6,7 @@
 
     <main class="main">
       <div v-for="(item, index) in data">
-        <slot :prop="item"></slot>
+        <slot :prop="item" :index="index"></slot>
       </div>
       <!-- <slot></slot> -->
     </main>
