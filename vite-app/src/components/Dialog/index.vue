@@ -3,12 +3,14 @@
     <header class="header">
       <slot name="header"></slot>
     </header>
+
     <main class="main">
       <div v-for="(item, index) in data">
         <slot :prop="item"></slot>
       </div>
-      <slot></slot>
+      <!-- <slot></slot> -->
     </main>
+
     <footer class="footer">
       <slot name="footer"></slot>
     </footer>

@@ -28,6 +28,7 @@
           具名插槽插入
         </div>
       </template>
+
       <!-- 
         解构函数把data里的prop解构出来
         { "prop": { "name": "slot1", "age": 11 } }
@@ -35,6 +36,7 @@
       <template v-slot="{prop}">
         <div>{{typeof prop}}</div>
       </template>
+      
       <!-- 简写# -->
       <template #footer>
         <div>
