@@ -11,6 +11,17 @@
       <Content></Content>
     </div>
   </div>
+  
+    <!-- 
+      teleport 传送组件
+      不受父组件样式影响, 只接受目标组件
+      eg: 传送到header
+       -->
+    <teleport to=".header">
+      <div style="background-color: cyan;">
+        Loading
+      </div>
+    </teleport>
 </template>
 
 <script setup lang="ts">
