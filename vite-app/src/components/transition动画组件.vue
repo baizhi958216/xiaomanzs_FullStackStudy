@@ -9,6 +9,8 @@
       <div v-if="!flag" class="redbox"></div>
     </transition>
   </div>
+
+  <!-- 自定义类名 -->
   <div>
     <button @click="flag1 = !flag1">切换1</button>
     <!-- 
@@ -19,13 +21,30 @@
       <div v-if="!flag1" class="redbox1"></div>
     </transition>
   </div>
+
+  <!-- 结合animate.css -->
+  <div>
+    <button @click="flag2 = !flag2">切换2</button>
+    <!-- 
+      transition组件 
+      指定类名结合animate.css
+      duration动画持续时长
+      :duration="1000" 指定enter/leave均为1s
+      -->
+    <transition :duration="{ enter: 1000, leave: 1000 }" leave-active-class="animate__animated animate__lightSpeedOutRight"
+      enter-active-class="animate__animated animate__lightSpeedInLeft" name="fade2">
+      <div v-if="!flag2" class="redbox2">你好傻孩子</div>
+    </transition>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import 'animate.css'
 
 let flag = ref(true)
 let flag1 = ref(true)
+let flag2 = ref(true)
 </script>
 
 <style scoped>
@@ -95,5 +114,9 @@ let flag1 = ref(true)
 .e-t {
   width: 300px;
   height: 300px;
+}
+
+.redbox2 {
+  font-size: 100px;
 }
 </style>
