@@ -33,10 +33,10 @@
         解构函数把data里的prop解构出来
         { "prop": { "name": "slot1", "age": 11 } }
          -->
-      <template v-slot="{prop,index}">
-        <div>{{prop.name}}-{{prop.age}}-{{index}}</div>
+      <template v-slot="{ prop, index }">
+        <div>{{ prop.name }}-{{ prop.age }}-{{ index }}</div>
       </template>
-      
+
       <!-- 简写# -->
       <template #footer>
         <div>
@@ -46,18 +46,37 @@
 
       <!-- 动态插槽 dynamic slot -->
       <template #[name]>
-          <div>动态插槽</div>
+        <div>动态插槽</div>
       </template>
     </Dialog>
+
+    <!-- 异步组件 -->
+    <Suspense>
+      <template #default>
+        <D></D>
+      </template>
+
+      <!-- 等待时操作 -->
+      <template #fallback>
+        <div>
+          Loading about 2 seconds...
+        </div>
+      </template>
+    </Suspense>
   </div>
 
 </template>
 
 <script setup lang="ts">
-import { markRaw, reactive,ref } from 'vue';
+import { defineAsyncComponent, markRaw, reactive, ref } from 'vue';
 import A from './A.vue'
 import B from './B.vue'
 import C from './C.vue'
+
+// 错误的异步组件引入方式
+// import D from '../../components/D/index.vue'
+// 引入异步组件
+const D = defineAsyncComponent(() => import('../../components/D/index.vue'))
 
 type Tabs = {
   name: string,
