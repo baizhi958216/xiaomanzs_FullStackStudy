@@ -6,13 +6,8 @@
       添加动画状态实现动画效果
       enter/leave生命周期
       -->
-    <transition
-      name="fade"
-      @before-enter="EnterFrom"
-      @enter="EnterActive"
-      @after-enter="EnterTo"
-      @enter-cancelled="EnterCancel"
-    >
+    <transition name="fade" @before-enter="EnterFrom" @enter="EnterActive" @after-enter="EnterTo"
+      @enter-cancelled="EnterCancel">
       <div v-if="!flag" class="redbox"></div>
     </transition>
   </div>
@@ -24,12 +19,7 @@
       transition组件 
       指定类名
       -->
-    <transition
-      name="fade1"
-      enter-from-class="e-f"
-      enter-active-class="e-a"
-      enter-to-class="e-t"
-    >
+    <transition name="fade1" enter-from-class="e-f" enter-active-class="e-a" enter-to-class="e-t">
       <div v-if="!flag1" class="redbox1"></div>
     </transition>
   </div>
@@ -43,12 +33,9 @@
       duration动画持续时长
       :duration="1000" 指定enter/leave均为1s
       -->
-    <transition
-      :duration="{ enter: 1000, leave: 1000 }"
+    <transition :duration="{ enter: 1000, leave: 1000 }"
       leave-active-class="animate__animated animate__lightSpeedOutRight"
-      enter-active-class="animate__animated animate__lightSpeedInLeft"
-      name="fade2"
-    >
+      enter-active-class="animate__animated animate__lightSpeedInLeft" name="fade2">
       <div v-if="!flag2" class="redbox2">你好傻孩子</div>
     </transition>
   </div>
@@ -56,14 +43,7 @@
   <!-- gsap -->
   <div>
     <button @click="flag3 = !flag3">切换3</button>
-    <!-- 
-      -->
-    <transition
-      name="fade3"
-      @before-enter="Efrom"
-      @enter="Eactive"
-      @leave="Leave"
-    >
+    <transition name="fade3" @before-enter="Efrom" @enter="Eactive" @leave="Leave">
       <div v-if="!flag3" class="redbox3"></div>
     </transition>
   </div>
@@ -74,15 +54,7 @@
     -->
   <div>
     <button @click="flag4 = !flag4">切换4</button>
-    <!-- 
-      -->
-    <transition
-      name="fade4"
-      appear
-      appear-from-class="appearf"
-      appear-active-class="appeara"
-      appear-to-class="appeart"
-    >
+    <transition name="fade4" appear appear-from-class="appearf" appear-active-class="appeara" appear-to-class="appeart">
       <div v-if="!flag4" class="redbox4"></div>
     </transition>
   </div>
@@ -92,11 +64,7 @@
     -->
   <div>
     <button @click="flag5 = !flag5">切换5</button>
-    <transition
-      name="fade5"
-      appear
-      appear-active-class="animate__animated animate__wobble"
-    >
+    <transition name="fade5" appear appear-active-class="animate__animated animate__wobble">
       <div v-if="!flag5" class="redbox5"></div>
     </transition>
   </div>
@@ -109,10 +77,8 @@
       tag属性可以为transition-group再套一层自定义标签
       其它与transition一样 enter-to-class... @after-enter...
      -->
-    <transition-group
-      leave-active-class="animate__animated animate__hinge"
-      enter-active-class="animate__animated animate__bounceIn"
-    >
+    <transition-group leave-active-class="animate__animated animate__hinge"
+      enter-active-class="animate__animated animate__bounceIn">
       <div :key="i" class="wraps-item" v-for="i in listgroup">
         {{ i }}
       </div>
@@ -120,12 +86,20 @@
   </div>
   <button @click="listgroup.push(Math.max(...listgroup) + 1)">ADD</button>
   <button @click="listgroup.length > 1 ? listgroup.pop() : 0">DEL</button>
+
+  <!-- transition-group的move-class与animatecss, lodash应用 -->
+  <div>
+    <transition-group move-class="mcl" tag="div" class="wrapdash">
+      <div  @click="randomdash" class="wrapdash-i" v-for="i in dashlist" :key="i.id">{{ i.number }}</div>
+    </transition-group>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 import 'animate.css'
 import gsap from 'gsap'
+import _ from 'lodash'
 
 let flag = ref(true)
 let flag1 = ref(true)
@@ -178,6 +152,18 @@ const Leave = (el: Element, done: gsap.Callback) => {
     height: 0,
     onComplete: done,
   })
+}
+
+// listgroup与lodash应用
+let dashlist = ref(Array.apply(null, { length: 81 } as number[]).map((_, index) => {
+  return {
+    id: index,
+    number: (index % 9) + 1
+  }
+}))
+
+const randomdash = ()=>{
+  dashlist.value=_.shuffle(dashlist.value)
 }
 </script>
 
@@ -297,5 +283,23 @@ const Leave = (el: Element, done: gsap.Callback) => {
     margin: 10px;
     font-size: 40px;
   }
+}
+
+.wrapdash {
+  display: flex;
+  flex-wrap: wrap;
+  width: calc(25px * 10 + 9px);
+
+  &-i {
+    width: 25px;
+    height: 25px;
+    border: 1px solid #CCC;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.mcl{
+  transition: ease-in-out .5s;
 }
 </style>
