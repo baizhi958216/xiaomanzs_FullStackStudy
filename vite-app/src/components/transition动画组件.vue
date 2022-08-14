@@ -39,15 +39,27 @@
       <div v-if="!flag2" class="redbox2">你好傻孩子</div>
     </transition>
   </div>
+
+  <!-- gsap -->
+  <div>
+    <button @click="flag3 = !flag3">切换3</button>
+    <!-- 
+      -->
+    <transition name="fade3" @before-enter="Efrom" @enter="Eactive" @leave="Leave">
+      <div v-if="!flag3" class="redbox3"></div>
+    </transition>
+  </div>
 </template>
 
 <script setup lang="ts">
 import { ref } from 'vue';
 import 'animate.css'
+import gsap from 'gsap'
 
 let flag = ref(true)
 let flag1 = ref(true)
 let flag2 = ref(true)
+let flag3 = ref(true)
 
 const EnterFrom = () => {
   console.log('EnterFrom动画开始');
@@ -66,6 +78,31 @@ const EnterTo = () => {
 
 const EnterCancel = () => {
   console.log('EnterCancel动画取消');
+}
+
+// gsap动画库
+// 开始
+const Eactive=(el:Element,done:Function)=>{
+  gsap.set(el,{
+    width:0,
+    height:0
+  })
+}
+// 进入
+const Efrom=(el:Element,done:gsap.Callback)=>{
+  gsap.to(el,{
+    width:300,
+    height:300,
+    onComplete:done
+  })
+}
+// 退出
+const Leave=(el:Element,done:gsap.Callback)=>{
+  gsap.to(el,{
+    width:0,
+    height:0,
+    onComplete:done
+  })
 }
 </script>
 
@@ -140,5 +177,11 @@ const EnterCancel = () => {
 
 .redbox2 {
   font-size: 100px;
+}
+
+.redbox3 {
+  width: 300px;
+  height: 300px;
+  background-color: red;
 }
 </style>
