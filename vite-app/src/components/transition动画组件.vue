@@ -90,13 +90,17 @@
   <!-- transition-group的move-class与animatecss, lodash应用 -->
   <div>
     <transition-group move-class="mcl" tag="div" class="wrapdash">
-      <div  @click="randomdash" class="wrapdash-i" v-for="i in dashlist" :key="i.id">{{ i.number }}</div>
+      <div @click="randomdash" class="wrapdash-i" v-for="i in dashlist" :key="i.id">{{ i.number }}</div>
     </transition-group>
   </div>
+
+  <!-- gsap状态过渡 -->
+  <input v-model="num.current" type="number" step="20">
+  <div>{{ num.tweenedNumber.toFixed() }}</div>
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { reactive, ref, watch } from 'vue'
 import 'animate.css'
 import gsap from 'gsap'
 import _ from 'lodash'
@@ -162,9 +166,21 @@ let dashlist = ref(Array.apply(null, { length: 81 } as number[]).map((_, index) 
   }
 }))
 
-const randomdash = ()=>{
-  dashlist.value=_.shuffle(dashlist.value)
+const randomdash = () => {
+  dashlist.value = _.shuffle(dashlist.value)
 }
+
+// gsap状态过渡
+const num = reactive({
+  current: 0,
+  tweenedNumber: 0
+})
+watch(() => num.current, (newVal, oldVal) => {
+  gsap.to(num, {
+    duration:1,
+    tweenedNumber: newVal
+  })
+})
 </script>
 
 <style scoped lang="less">
@@ -299,7 +315,8 @@ const randomdash = ()=>{
     align-items: center;
   }
 }
-.mcl{
+
+.mcl {
   transition: ease-in-out .5s;
 }
 </style>
