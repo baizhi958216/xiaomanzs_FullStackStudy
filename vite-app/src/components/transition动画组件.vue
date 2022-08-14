@@ -6,8 +6,13 @@
       添加动画状态实现动画效果
       enter/leave生命周期
       -->
-    <transition name="fade" @before-enter="EnterFrom" @enter="EnterActive" @after-enter="EnterTo"
-      @enter-cancelled="EnterCancel">
+    <transition
+      name="fade"
+      @before-enter="EnterFrom"
+      @enter="EnterActive"
+      @after-enter="EnterTo"
+      @enter-cancelled="EnterCancel"
+    >
       <div v-if="!flag" class="redbox"></div>
     </transition>
   </div>
@@ -19,7 +24,12 @@
       transition组件 
       指定类名
       -->
-    <transition name="fade1" enter-from-class="e-f" enter-active-class="e-a" enter-to-class="e-t">
+    <transition
+      name="fade1"
+      enter-from-class="e-f"
+      enter-active-class="e-a"
+      enter-to-class="e-t"
+    >
       <div v-if="!flag1" class="redbox1"></div>
     </transition>
   </div>
@@ -33,9 +43,12 @@
       duration动画持续时长
       :duration="1000" 指定enter/leave均为1s
       -->
-    <transition :duration="{ enter: 1000, leave: 1000 }"
+    <transition
+      :duration="{ enter: 1000, leave: 1000 }"
       leave-active-class="animate__animated animate__lightSpeedOutRight"
-      enter-active-class="animate__animated animate__lightSpeedInLeft" name="fade2">
+      enter-active-class="animate__animated animate__lightSpeedInLeft"
+      name="fade2"
+    >
       <div v-if="!flag2" class="redbox2">你好傻孩子</div>
     </transition>
   </div>
@@ -45,7 +58,12 @@
     <button @click="flag3 = !flag3">切换3</button>
     <!-- 
       -->
-    <transition name="fade3" @before-enter="Efrom" @enter="Eactive" @leave="Leave">
+    <transition
+      name="fade3"
+      @before-enter="Efrom"
+      @enter="Eactive"
+      @leave="Leave"
+    >
       <div v-if="!flag3" class="redbox3"></div>
     </transition>
   </div>
@@ -58,7 +76,13 @@
     <button @click="flag4 = !flag4">切换4</button>
     <!-- 
       -->
-    <transition name="fade4" appear appear-from-class="appearf" appear-active-class="appeara" appear-to-class="appeart">
+    <transition
+      name="fade4"
+      appear
+      appear-from-class="appearf"
+      appear-active-class="appeara"
+      appear-to-class="appeart"
+    >
       <div v-if="!flag4" class="redbox4"></div>
     </transition>
   </div>
@@ -68,16 +92,38 @@
     -->
   <div>
     <button @click="flag5 = !flag5">切换5</button>
-    <!-- 
-      -->
-    <transition name="fade5" appear  appear-active-class="animate__animated animate__wobble">
+    <transition
+      name="fade5"
+      appear
+      appear-active-class="animate__animated animate__wobble"
+    >
       <div v-if="!flag5" class="redbox5"></div>
     </transition>
   </div>
+
+  <!-- 
+    transition-group
+   -->
+  <div class="wraps">
+    <!-- 
+      tag属性可以为transition-group再套一层自定义标签
+      其它与transition一样 enter-to-class... @after-enter...
+     -->
+    <transition-group
+      leave-active-class="animate__animated animate__hinge"
+      enter-active-class="animate__animated animate__bounceIn"
+    >
+      <div :key="i" class="wraps-item" v-for="i in listgroup">
+        {{ i }}
+      </div>
+    </transition-group>
+  </div>
+  <button @click="listgroup.push(Math.max(...listgroup) + 1)">ADD</button>
+  <button @click="listgroup.length > 1 ? listgroup.pop() : 0">DEL</button>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { reactive, ref } from 'vue'
 import 'animate.css'
 import gsap from 'gsap'
 
@@ -88,23 +134,25 @@ let flag3 = ref(true)
 let flag4 = ref(false)
 let flag5 = ref(false)
 
+const listgroup = reactive<number[]>([1, 2, 3, 4, 5, 6])
+
 const EnterFrom = () => {
-  console.log('EnterFrom动画开始');
+  console.log('EnterFrom动画开始')
 }
 
 const EnterActive = (el: Element, done: Function) => {
-  console.log('EnterActive进入动画', el);
+  console.log('EnterActive进入动画', el)
   setTimeout(() => {
     done()
-  }, 3000);
+  }, 3000)
 }
 
 const EnterTo = () => {
-  console.log('EnterTo动画结束');
+  console.log('EnterTo动画结束')
 }
 
 const EnterCancel = () => {
-  console.log('EnterCancel动画取消');
+  console.log('EnterCancel动画取消')
 }
 
 // gsap动画库
@@ -112,7 +160,7 @@ const EnterCancel = () => {
 const Eactive = (el: Element, done: Function) => {
   gsap.set(el, {
     width: 0,
-    height: 0
+    height: 0,
   })
 }
 // 进入
@@ -120,7 +168,7 @@ const Efrom = (el: Element, done: gsap.Callback) => {
   gsap.to(el, {
     width: 300,
     height: 300,
-    onComplete: done
+    onComplete: done,
   })
 }
 // 退出
@@ -128,12 +176,12 @@ const Leave = (el: Element, done: gsap.Callback) => {
   gsap.to(el, {
     width: 0,
     height: 0,
-    onComplete: done
+    onComplete: done,
   })
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
 .redbox {
   width: 300px;
   height: 300px;
@@ -207,15 +255,15 @@ const Leave = (el: Element, done: gsap.Callback) => {
 }
 
 .redbox3 {
-  width: 300px;
-  height: 300px;
+  width: 100px;
+  height: 100px;
   background-color: red;
 }
 
 /* appear */
 .redbox4 {
-  width: 300px;
-  height: 300px;
+  width: 100px;
+  height: 100px;
   background-color: red;
 }
 
@@ -229,13 +277,25 @@ const Leave = (el: Element, done: gsap.Callback) => {
 }
 
 .appeart {
-  width: 300px;
-  height: 300px;
+  width: 100px;
+  height: 100px;
 }
 
 .redbox5 {
-  width: 300px;
-  height: 300px;
+  width: 100px;
+  height: 100px;
   background-color: red;
+}
+
+.wraps {
+  display: flex;
+  flex-wrap: wrap;
+  word-break: break-all;
+  border: 1px solid #ccc;
+
+  &-item {
+    margin: 10px;
+    font-size: 40px;
+  }
 }
 </style>
