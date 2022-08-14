@@ -49,6 +49,31 @@
       <div v-if="!flag3" class="redbox3"></div>
     </transition>
   </div>
+
+  <!-- 
+    appear
+    仅在元素加载时触发一次
+    -->
+  <div>
+    <button @click="flag4 = !flag4">切换4</button>
+    <!-- 
+      -->
+    <transition name="fade4" appear appear-from-class="appearf" appear-active-class="appeara" appear-to-class="appeart">
+      <div v-if="!flag4" class="redbox4"></div>
+    </transition>
+  </div>
+
+  <!-- 
+    appear结合animatecss
+    -->
+  <div>
+    <button @click="flag5 = !flag5">切换5</button>
+    <!-- 
+      -->
+    <transition name="fade5" appear  appear-active-class="animate__animated animate__wobble">
+      <div v-if="!flag5" class="redbox5"></div>
+    </transition>
+  </div>
 </template>
 
 <script setup lang="ts">
@@ -60,6 +85,8 @@ let flag = ref(true)
 let flag1 = ref(true)
 let flag2 = ref(true)
 let flag3 = ref(true)
+let flag4 = ref(false)
+let flag5 = ref(false)
 
 const EnterFrom = () => {
   console.log('EnterFrom动画开始');
@@ -82,26 +109,26 @@ const EnterCancel = () => {
 
 // gsap动画库
 // 开始
-const Eactive=(el:Element,done:Function)=>{
-  gsap.set(el,{
-    width:0,
-    height:0
+const Eactive = (el: Element, done: Function) => {
+  gsap.set(el, {
+    width: 0,
+    height: 0
   })
 }
 // 进入
-const Efrom=(el:Element,done:gsap.Callback)=>{
-  gsap.to(el,{
-    width:300,
-    height:300,
-    onComplete:done
+const Efrom = (el: Element, done: gsap.Callback) => {
+  gsap.to(el, {
+    width: 300,
+    height: 300,
+    onComplete: done
   })
 }
 // 退出
-const Leave=(el:Element,done:gsap.Callback)=>{
-  gsap.to(el,{
-    width:0,
-    height:0,
-    onComplete:done
+const Leave = (el: Element, done: gsap.Callback) => {
+  gsap.to(el, {
+    width: 0,
+    height: 0,
+    onComplete: done
   })
 }
 </script>
@@ -180,6 +207,33 @@ const Leave=(el:Element,done:gsap.Callback)=>{
 }
 
 .redbox3 {
+  width: 300px;
+  height: 300px;
+  background-color: red;
+}
+
+/* appear */
+.redbox4 {
+  width: 300px;
+  height: 300px;
+  background-color: red;
+}
+
+.appearf {
+  width: 0;
+  height: 0;
+}
+
+.appeara {
+  transition: all 1.5s ease;
+}
+
+.appeart {
+  width: 300px;
+  height: 300px;
+}
+
+.redbox5 {
   width: 300px;
   height: 300px;
   background-color: red;
