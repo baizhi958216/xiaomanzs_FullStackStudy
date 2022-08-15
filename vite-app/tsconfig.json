@@ -6,9 +6,14 @@
     "moduleResolution": "Node",
     "strict": true,
     "jsx": "preserve",
+    "jsxFactory": "h",
+    "jsxFragmentFactory": "Fragment",
     "sourceMap": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
+    // 无法在 "--isolatedModules" 下编译“VueTSX.tsx”，
+    // 因为它被视为全局脚本文件。
+    // 请添加导入、导出或空的 "export {}" 语句来使它成为模块。
+    // "isolatedModules": true,
     "esModuleInterop": true,
     "lib": ["ESNext", "DOM"],
     "skipLibCheck": true

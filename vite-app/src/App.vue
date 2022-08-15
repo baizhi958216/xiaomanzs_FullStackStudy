@@ -13,7 +13,8 @@
   <!-- <vtransition></vtransition> -->
   <!-- <vprovideInject></vprovideInject> -->
   <!-- <vBrotherBus></vBrotherBus> -->
-  <vMitt></vMitt>
+  <!-- <vMitt></vMitt> -->
+  <vTSX></vTSX>
 </template>
 
 <script setup lang="ts">
@@ -31,7 +32,8 @@
 // import vtransition from './components/transition动画组件.vue'
 // import vprovideInject from './components/依赖注入.vue'
 // import vBrotherBus from './components/兄弟组件传参.vue'
-import vMitt from './components/VueMitt.vue'
+// import vMitt from './components/VueMitt.vue'
+import vTSX from './components/VueTSX.vue'
 </script>
 
 <style lang="less">
