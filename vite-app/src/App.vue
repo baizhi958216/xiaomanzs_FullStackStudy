@@ -14,7 +14,8 @@
   <!-- <vprovideInject></vprovideInject> -->
   <!-- <vBrotherBus></vBrotherBus> -->
   <!-- <vMitt></vMitt> -->
-  <vTSX></vTSX>
+  <!-- <vTSX></vTSX> -->
+  <vAutoImport></vAutoImport>
 </template>
 
 <script setup lang="ts">
@@ -33,7 +34,8 @@
 // import vprovideInject from './components/依赖注入.vue'
 // import vBrotherBus from './components/兄弟组件传参.vue'
 // import vMitt from './components/VueMitt.vue'
-import vTSX from './components/VueTSX.vue'
+// import vTSX from './components/VueTSX.vue'
+import vAutoImport from './components/ViteAutoImport.vue'
 </script>
 
 <style lang="less">
