@@ -11,7 +11,8 @@
   <!-- <layout></layout> -->
   <!-- <vkeepalive></vkeepalive> -->
   <!-- <vtransition></vtransition> -->
-  <vprovideInject></vprovideInject>
+  <!-- <vprovideInject></vprovideInject> -->
+  <vBrotherBus></vBrotherBus>
 </template>
 
 <script setup lang="ts">
@@ -27,7 +28,8 @@
 // import layout from './layout/index.vue'
 // import vkeepalive from './components/keepAlive缓存组件.vue'
 // import vtransition from './components/transition动画组件.vue'
-import vprovideInject from './components/依赖注入.vue'
+// import vprovideInject from './components/依赖注入.vue'
+import vBrotherBus from './components/兄弟组件传参.vue'
 </script>
 
 <style lang="less">
