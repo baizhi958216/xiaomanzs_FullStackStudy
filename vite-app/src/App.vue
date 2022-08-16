@@ -15,7 +15,8 @@
   <!-- <vBrotherBus></vBrotherBus> -->
   <!-- <vMitt></vMitt> -->
   <!-- <vTSX></vTSX> -->
-  <vAutoImport></vAutoImport>
+  <!-- <vAutoImport></vAutoImport> -->
+  <VueVModel></VueVModel>
 </template>
 
 <script setup lang="ts">
@@ -35,7 +36,8 @@
 // import vBrotherBus from './components/兄弟组件传参.vue'
 // import vMitt from './components/VueMitt.vue'
 // import vTSX from './components/VueTSX.vue'
-import vAutoImport from './components/ViteAutoImport.vue'
+// import vAutoImport from './components/ViteAutoImport.vue'
+import VueVModel from './components/VueVModel.vue'
 </script>
 
 <style lang="less">
