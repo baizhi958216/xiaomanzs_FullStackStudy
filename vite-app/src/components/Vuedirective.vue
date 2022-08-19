@@ -2,6 +2,8 @@
   <div>
     <button @click="flag=!flag">切换</button>
     <A v-if="flag" v-move:aaa.baizhi958216="{background:'red'}"></A>
+    <input type="text" v-model="a2Input">
+    <A v-ipt:iptval="{background:a2Input}"></A>
   </div>
 </template>
 
@@ -45,6 +47,15 @@ const vMove:Directive = {
   unmounted(){
     console.log('=======>unmounted');
   }
+}
+
+// 简写
+let a2Input = ref<string>('')
+type ipt = {
+  background:string
+}
+const vIpt = (el:HTMLElement,dir:DirectiveBinding<ipt>)=>{
+  el.style.background = dir.value.background
 }
 </script>
 
