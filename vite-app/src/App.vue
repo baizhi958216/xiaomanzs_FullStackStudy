@@ -16,7 +16,8 @@
   <!-- <vMitt></vMitt> -->
   <!-- <vTSX></vTSX> -->
   <!-- <vAutoImport></vAutoImport> -->
-  <VueVModel></VueVModel>
+  <!-- <VueVModel></VueVModel> -->
+  <Vuedirective></Vuedirective>
 </template>
 
 <script setup lang="ts">
@@ -37,7 +38,8 @@
 // import vMitt from './components/VueMitt.vue'
 // import vTSX from './components/VueTSX.vue'
 // import vAutoImport from './components/ViteAutoImport.vue'
-import VueVModel from './components/VueVModel.vue'
+// import VueVModel from './components/VueVModel.vue'
+import Vuedirective from './components/Vuedirective.vue'
 </script>
 
 <style lang="less">
